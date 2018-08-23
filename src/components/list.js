@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getAllListData } from '../actions'
 
 class List extends Component {
+    componentDidMount() {
+        this.props.getAllListData();
+    }
     render() {
+        const listElements = this.props.list.map(item => {
+            return <li className="collection-item" key={item._id}>{item.title}</li>
+        })
         return (
             <ul className="collection">
-                <li className="collection-item">Awesome List</li>
+                {listElements}
             </ul>
         )
     }
 }
 
-export default List;
+function mapStateToProps(state) {
+    return {
+        list: state.list.all
+    }
+}
+
+export default connect(mapStateToProps, { getAllListData: getAllListData })(List);

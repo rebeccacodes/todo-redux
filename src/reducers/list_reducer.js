@@ -5,8 +5,10 @@ const DEFAULT_STATE = {
 };
 
 export default (state = DEFAULT_STATE, action) => {
-    switch(action.type) {
+    switch (action.type) {
+        case types.GET_ALL_LIST_DATA:
+            return { ...state, all: action.payload.data.todos };
         default:
-        return state;
+            return state;
     }
 }
