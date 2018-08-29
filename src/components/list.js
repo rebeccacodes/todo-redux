@@ -9,8 +9,13 @@ class List extends Component {
     }
     render() {
         const listElements = this.props.list.map(item => {
-            return <li className="collection-item" key={item._id}>{item.title}</li>
-        })
+            return (
+                <li key={item._id} className="collection-item" >
+
+                    <Link to={`/item/${item._id}`}>{item.title}</Link>
+                </li>
+            )
+        });
         return (
             <div>
                 <h1 className="center">REDUX TO DO LIST</h1>
